@@ -1,0 +1,20 @@
+{
+    "private" : true,
+    "name" : "three.asset",
+    "version" : "0.0.1",
+    "devDependencies" : {
+        "commander" : "~0.5",
+		"jshint" : "~0.9",
+        "uglify-js2" : "~2.1",
+		"hbs" : "~1.0"
+    },
+    "engine" : {
+        "node" : "0.8.x"
+    }, 
+  "licenses": [
+    {
+      "type": "MIT license",
+      "url": "http://www.github.com/three-asset/LICENSE"
+    }
+  ]
+}

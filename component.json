@@ -1,0 +1,6 @@
+{
+  "name": "Three Asset",
+  "version": "0.0.1",
+  "main": ["./lib/three.asset.js"],
+  "dependencies": {}
+}
