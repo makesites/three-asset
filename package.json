@@ -1,20 +1,26 @@
 {
     "private" : true,
     "name" : "three.asset",
-    "version" : "0.0.1",
-    "devDependencies" : {
-        "commander" : "~0.5",
-		"jshint" : "~0.9",
-        "uglify-js2" : "~2.1",
-		"hbs" : "~1.0"
-    },
-    "engine" : {
+    "version" : "0.0.2",
+	"author": "makesites",
+	"homepage": "https://github.com/makesites/three-asset",
+	"repository": {
+		"type": "git",
+		"url": "git://github.com/makesites/three-asset.git"
+	},
+	"licenses": [
+		{
+		"type": "MIT license",
+		"url": "http://makesites.org/licenses/MIT"
+		}
+	],
+	"engine" : {
         "node" : "0.8.x"
     }, 
-  "licenses": [
-    {
-      "type": "MIT license",
-      "url": "http://www.github.com/three-asset/LICENSE"
-    }
-  ]
+	"devDependencies" : {
+		"commander" : "1.x",
+		"jshint" : "1.x",
+		"uglify-js" : "2.x",
+		"hbs" : "1.x"
+	}
 }
