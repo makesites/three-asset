@@ -2,7 +2,7 @@
  * @name three.asset
  * @author makesites
  * Homepage: https://github.com/makesites/three-asset
- * Version: 0.0.2 (Fri, 29 Mar 2013 06:45:55 GMT)
+ * Version: 0.0.2 (Mon, 11 Nov 2013 05:58:39 GMT)
  * @license MIT license
  */
 
@@ -15,17 +15,45 @@ THREE.Asset = function () {
 };
 
 THREE.Asset.prototype = {
-	
+
 	constructor: THREE.Asset,
-	
-	load: function ( url ) { 
-	
+
+	load: function ( file, callback ) {
+		// variables
+		var loader, src, ext;
+		// save callback for later...
+		this._callback = callback;
+		ext = file.substr( file.lastIndexOf(".")+1 );
+		src = file.substr( 0, file.lastIndexOf(".") );
+		// based on the extension initiate the appropriate loader
+		switch( ext ){
+			case "bin":
+				loader = new THREE.BinaryLoader( true );
+				loader.load( src+'.js', this._loaded);
+			break;
+			case "obj":
+				var obj = file;
+				var mtl = src+'.mtl';
+				loader = new THREE.OBJMTLLoader();
+				loader.load( obj, mtl, this._loaded);
+			break;
+			case "js":
+				// assume this is the uncompressed version (lookup for a bin to make sure?)
+				loader = new THREE.JSONLoader( true );
+				loader.load( file, this._loaded);
+			break;
+		}
+
 	},
-	
+
 	parse: function ( json ) {
-		
+
+	},
+
+	_loaded: function ( object ) {
+		if( typeof this._callback == "function" ) this._callback( object );
 	}
-	
+
 };
 	
 })(THREE);
