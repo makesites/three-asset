@@ -2,7 +2,7 @@
  * @name three.asset
  * @author makesites
  * Homepage: https://github.com/makesites/three-asset
- * Version: 0.0.2 (Mon, 11 Nov 2013 05:58:39 GMT)
+ * Version: 0.0.2 (Mon, 11 Nov 2013 07:06:38 GMT)
  * @license MIT license
  */
 
@@ -10,7 +10,7 @@ if(typeof THREE !== "undefined") (function(THREE) {
 
 THREE.Asset = function () {
 
-	THREE.EventTarget.call( this );
+	THREE.Loader.call( this );
 
 };
 
@@ -21,6 +21,7 @@ THREE.Asset.prototype = {
 	load: function ( file, callback ) {
 		// variables
 		var loader, src, ext;
+		var self = this;
 		// save callback for later...
 		this._callback = callback;
 		ext = file.substr( file.lastIndexOf(".")+1 );
@@ -29,18 +30,18 @@ THREE.Asset.prototype = {
 		switch( ext ){
 			case "bin":
 				loader = new THREE.BinaryLoader( true );
-				loader.load( src+'.js', this._loaded);
+				loader.load( src+'.js', function(){ self._loaded.apply(self, arguments); });
 			break;
 			case "obj":
 				var obj = file;
 				var mtl = src+'.mtl';
 				loader = new THREE.OBJMTLLoader();
-				loader.load( obj, mtl, this._loaded);
+				loader.load( obj, mtl, function(){ self._loaded.apply(self, arguments); });
 			break;
 			case "js":
 				// assume this is the uncompressed version (lookup for a bin to make sure?)
 				loader = new THREE.JSONLoader( true );
-				loader.load( file, this._loaded);
+				loader.load( file, function(){ self._loaded.apply(self, arguments); });
 			break;
 		}
 
@@ -50,8 +51,8 @@ THREE.Asset.prototype = {
 
 	},
 
-	_loaded: function ( object ) {
-		if( typeof this._callback == "function" ) this._callback( object );
+	_loaded: function ( object, materials ) {
+		if( typeof this._callback == "function" ) this._callback( object, materials );
 	}
 
 };
