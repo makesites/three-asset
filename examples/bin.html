@@ -1,0 +1,70 @@
+<!doctype html>
+<html>
+<head>
+	<title>THREE Asset: Loading Binary file</title>
+
+</head>
+<body>
+
+<h1>THREE Asset: Loading Binary file</h1>
+
+<div id="main"></div>
+
+<!-- libs -->
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/three.js/r58/three.min.js"></script>
+<script type="text/javascript" src="assets/js/libs/three.BinaryLoader.js"></script>
+<script type="text/javascript" src="../build/three.asset.js"></script>
+
+<script type="text/javascript">
+
+	var camera, scene, renderer;
+	var geometry, material, asset, mesh;
+
+	init();
+	animate();
+
+	function init() {
+
+		camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 1, 10000 );
+		camera.position.z = 50;
+
+		scene = new THREE.Scene();
+
+		asset = new THREE.Asset();
+
+		asset.load("http://rawgithub.com/mrdoob/three.js/master/examples/obj/ninja/NinjaLo_bin.bin", function( geometry, materials ){
+
+			// temporary - use passed materials instead...
+			material = new THREE.MeshBasicMaterial( { color: 0xff0000, wireframe: true } );
+			//mesh = new THREE.Mesh( geometry, new THREE.MeshFaceMaterial(materials) );
+			mesh = new THREE.Mesh( geometry, material );
+
+			//mesh.geometry = geometry;
+			//mesh.material =  new THREE.MeshFaceMaterial(materials);
+			scene.add( mesh );
+		});
+
+		renderer = new THREE.CanvasRenderer();
+		renderer.setSize( window.innerWidth, window.innerHeight );
+
+		document.getElementById("main").appendChild( renderer.domElement );
+
+	}
+
+	function animate() {
+
+		// note: three.js includes requestAnimationFrame shim
+		requestAnimationFrame( animate );
+
+		if( mesh && mesh.rotation ){
+			mesh.rotation.x += 0.01;
+			mesh.rotation.y += 0.02;
+		}
+		renderer.render( scene, camera );
+
+	}
+
+</script>
+
+</body>
+</html>
