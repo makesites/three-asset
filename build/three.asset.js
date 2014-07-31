@@ -2,7 +2,7 @@
  * @name three.asset
  * @author makesites
  * Homepage: https://github.com/makesites/three-asset
- * Version: 0.0.2 (Thu, 31 Jul 2014 02:30:33 GMT)
+ * Version: 0.0.2 (Thu, 31 Jul 2014 02:41:48 GMT)
  * @license MIT license
  */
 
@@ -29,7 +29,7 @@ THREE.Asset.prototype = {
 		// sources should be an array
 		this.sources = ( source instanceof Array ) ? source : [source];
 		// exit now if no sources
-		if( !this.sources.length ) return this._callback( lod );
+		if( !this.sources.length ) return this._callback( this.lod );
 		for(var i in this.sources ){
 			var file = this.sources[i];
 			this.loadSource(file, this._bind( this, this.parse ) );
