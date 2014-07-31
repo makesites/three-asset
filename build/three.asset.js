@@ -2,7 +2,7 @@
  * @name three.asset
  * @author makesites
  * Homepage: https://github.com/makesites/three-asset
- * Version: 0.0.2 (Mon, 11 Nov 2013 07:06:38 GMT)
+ * Version: 0.0.2 (Thu, 31 Jul 2014 01:15:16 GMT)
  * @license MIT license
  */
 
@@ -18,12 +18,15 @@ THREE.Asset.prototype = {
 
 	constructor: THREE.Asset,
 
-	load: function ( file, callback ) {
+	load: function ( source, callback ) {
 		// variables
 		var loader, src, ext;
 		var self = this;
 		// save callback for later...
 		this._callback = callback;
+		// get file
+		var file = ( source instanceof Array ) ? source[0]: source;
+
 		ext = file.substr( file.lastIndexOf(".")+1 );
 		src = file.substr( 0, file.lastIndexOf(".") );
 		// based on the extension initiate the appropriate loader
