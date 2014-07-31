@@ -2,7 +2,7 @@
  * @name three.asset
  * @author makesites
  * Homepage: https://github.com/makesites/three-asset
- * Version: 0.0.2 (Thu, 31 Jul 2014 05:19:05 GMT)
+ * Version: 0.0.2 (Thu, 31 Jul 2014 05:27:21 GMT)
  * @license MIT license
  */
 
@@ -41,7 +41,7 @@ THREE.Asset.prototype = {
 		var object = this.getObject( geometry, materials );
 		var loaded = this.loaded;
 		var distance = 10; // distance between each LOD level (make this variable...)
-		this.lod.addLevel( object, (this.sources.length - loaded)*distance);
+		this.lod.addLevel( object, loaded*distance);
 		this.loaded++;
 		// exit if all done
 		if( this.loaded == this.sources.length ){
