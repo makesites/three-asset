@@ -2,7 +2,7 @@
  * @name three.asset
  * @author makesites
  * Homepage: https://github.com/makesites/three-asset
- * Version: 0.0.2 (Thu, 31 Jul 2014 02:10:25 GMT)
+ * Version: 0.0.2 (Thu, 31 Jul 2014 02:14:47 GMT)
  * @license MIT license
  */
 
@@ -49,7 +49,7 @@ THREE.Asset.prototype = {
 		}
 	},
 
-	loadSource: function ( geometry, callback ) {
+	loadSource: function ( file, callback ) {
 		// variables
 		var self = this;
 		var loader, src, ext;
