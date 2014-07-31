@@ -2,7 +2,7 @@
  * @name three.asset
  * @author makesites
  * Homepage: https://github.com/makesites/three-asset
- * Version: 0.0.2 (Thu, 31 Jul 2014 02:41:48 GMT)
+ * Version: 0.0.2 (Thu, 31 Jul 2014 02:56:08 GMT)
  * @license MIT license
  */
 
@@ -25,7 +25,7 @@ THREE.Asset.prototype = {
 		// level of detail
 		this.lod = new THREE.LOD();
 		// save callback for later...
-		this._callback = ( typeof this._callback == "function" ) ? callback : function(){};
+		this._callback = ( typeof callback == "function" ) ? callback : function(){};
 		// sources should be an array
 		this.sources = ( source instanceof Array ) ? source : [source];
 		// exit now if no sources
